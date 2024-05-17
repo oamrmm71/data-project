@@ -48,7 +48,7 @@ class huffmantree
 		}
 	}
 
-	while (head != NULL && head->next != NULL) 
+	while (header != NULL && header->next != NULL) 
 	{
 		Node* left = header;
 		Node* right = header->next;
