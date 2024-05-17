@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+typedef struct Node
+{
+    char character;    
+    int frequency;     
+    struct Node* left;  
+    struct Node* right; 
+} Node;
+
+Node* New(char character, int frequency) 
+{
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->character = character;
+    newNode->frequency = frequency;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+typedef struct BinaryTree 
+{
+    Node* root;  
+} BinaryTree;
+
+
+BinaryTree* createBinaryTree()
+{
+    BinaryTree* tree = (BinaryTree*)malloc(sizeof(BinaryTree));
+    tree->root = NULL;
+    return tree;
+}
+
+
+void insertNode(BinaryTree* tree, Node* node) 
+{
+   
+}
+
+void inorderTraversal(Node* root)
+{
+    if (root == NULL) return;
+    inorderTraversal(root->left);
+    printf("Character: %c, Frequency: %d\n", root->character, root->frequency);
+    inorderTraversal(root->right);
+}
