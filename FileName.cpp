@@ -3,11 +3,14 @@
 #include <conio.h>
 
 
+struct node {
 
-class huffmantree {
 	char data;
 	int freq;
-
+};
+class huffmantree 
+{
+		
 	huffmantree* left;
 	huffmantree* right;
 	huffmantree(char character,int frequency)
@@ -16,42 +19,50 @@ class huffmantree {
 		freq = frequency;
 		left = right = NULL;
 	}
-};
-huffmantree* buildhuffmantree(int freq[], int top) {
-	Node* head = NULL;
 
-	for (int i = 0; i < ASCII_SIZE; i++) {
-		if (freq[i].freq > 0) {
-			insertNode(&head, createNode(freq[i].ch, freq[i].freq));
+	void findfreq(char s[])
+	{
+		int i = 0;
+
+		int freq[26] = { 0 };
+
+		while (s[i] != '\0')
+		{
+			freq[s[i] - 'a']++;
+			i++;
+		}
+		printfreq(freq);
+	}
+
+	huffmantree* buildhuffmantree(int freq[], int top) 
+	{
+
+	Node* header = NULL;
+
+	for (int i = 0; i < ASCII_SIZE; i++) 
+	{
+
+		if (freq[i].freq > 0) 
+		{
+			insertNode(&header, createNode(freq[i].ch, freq[i].freq));
 		}
 	}
 
-	while (head != NULL && head->next != NULL) {
-		Node* left = head;
-		Node* right = head->next;
-		head = right->next;
+	while (head != NULL && head->next != NULL) 
+	{
+		Node* left = header;
+		Node* right = header->next;
+		header = right->next;
 
 		top = newNode('$', left->freq + right->freq);
 		top->left = left;
 		top->right = right;
 
-		insertNode(&head, top);
+		insertNode(&header, top);
 	}
 
-	return head;
-}
-
-void findfreq(char s[])
-{
-	int i = 0;
-
-	int freq[26] = { 0 };
-
-	while (s[i] != '\0')
-	{
-		freq[s[i] - 'a']++;
-		i++;
+	return header;
 	}
-	printfreq(freq);
-}
 
+
+};
